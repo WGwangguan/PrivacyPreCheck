@@ -4,7 +4,6 @@ import android.app.ActivityManager
 import android.bluetooth.le.BluetoothLeScanner
 import android.content.ClipData
 import android.content.ClipboardManager
-import android.content.pm.PackageManager
 import android.hardware.SensorManager
 import android.location.LocationManager
 import android.net.NetworkInfo
@@ -96,7 +95,12 @@ object PrivacyConfig {
         linkedList.add(PrivacyApi(ActivityManager::class.java, "getRunningAppProcesses"))
 
         // 已安装应用
-        linkedList.add(PrivacyApi(Class.forName("android.app.ApplicationPackageManager"), "getInstalledPackages"))
+        linkedList.add(
+            PrivacyApi(
+                Class.forName("android.app.ApplicationPackageManager"),
+                "getInstalledPackages"
+            )
+        )
 
         // 传感器列表
         linkedList.add(PrivacyApi(SensorManager::class.java, "getSensorList"))
